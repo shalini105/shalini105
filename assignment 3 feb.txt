@@ -1,0 +1,167 @@
+# Q1. Which keyword is used to create a function? Create a function to return a list of odd numbers in the
+# range of 1 to 25.
+
+def odd_numbers():
+    lst = [num for num in range(1,26,2)]
+    return lst
+
+ans = odd_numbers()
+print(ans)
+[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25]
+# Q2. Why *args and **kwargs is used in some functions? Create a function each for *args and **kwargs
+# to demonstrate their use.
+
+
+# Use of *args
+
+def adder(*num):
+    sum = 0
+    
+    for n in num:
+        sum = sum + n
+
+    print("Sum:",sum)
+
+adder(3,5)
+adder(4,5,6,7)
+adder(1,2,3,5,6)
+Sum: 8
+Sum: 22
+Sum: 17
+# Use of kwargs
+
+def intro(**data):
+    print("\nData type of argument:",type(data))
+
+    for key, value in data.items():
+        print("{} is {}".format(key,value))
+
+intro(Firstname="Sita", Lastname="Sharma", Age=22, Phone=1234567890)
+intro(Firstname="John", Lastname="Wood", Email="johnwood@nomail.com", Country="Wakanda", Age=25, Phone=9876543210)
+Data type of argument: <class 'dict'>
+Firstname is Sita
+Lastname is Sharma
+Age is 22
+Phone is 1234567890
+
+Data type of argument: <class 'dict'>
+Firstname is John
+Lastname is Wood
+Email is johnwood@nomail.com
+Country is Wakanda
+Age is 25
+Phone is 9876543210
+# Q3.  What is an iterator in python? Name the method used to initialise the iterator object and the method
+# used for iteration. Use these methods to print the first five elements of the given list [2, 4, 6, 8, 10, 12, 14,
+# 16, 18, 20].
+
+
+lst = [2, 4, 6, 8, 10, 12, 14,16, 18, 20]
+lst_iter = iter(lst)
+
+print(next(lst_iter))
+print(next(lst_iter))
+print(next(lst_iter))
+print(next(lst_iter))
+print(next(lst_iter))
+2
+4
+6
+8
+10
+# Q4.  What is a generator function in python? Why yield keyword is used? Give an example of a generator
+# function.
+
+def my_generator(n):
+
+    # initialize counter
+    value = 0
+
+    # loop until counter is less than n
+    while value < n:
+
+        # produce the current value of the counter
+        yield value
+
+        # increment the counter
+        value += 1
+
+# iterate over the generator object produced by my_generator
+for value in my_generator(3):
+
+    # print each value produced by generator
+    print(value)
+0
+1
+2
+# Q5. Create a generator function for prime numbers less than 1000. Use the next() method to print the
+# first 20 prime numbers.
+
+def isPrime(num):
+    is_prime = True
+    for div  in range(4, int(num**0.5) + 1):
+        if num % div == 0:
+            is_prime = False
+            return is_prime
+        
+    return is_prime
+        
+
+def prime_numbers():
+    yield 2
+   
+    number = 3
+    while number < 1000:
+        is_prime = isPrime(number)
+        
+        if is_prime:
+            yield number
+            
+        number += 2
+
+primes = prime_numbers()
+
+for i in range(20):
+    print(next(primes),end=" ")
+        
+# for value in prime_numbers():
+#     print(value)
+2 3 5 7 9 11 13 15 17 19 21 23 27 29 31 33 37 39 41 43 
+# Q6. Write a python program to print the first 10 Fibonacci numbers using a while loop.
+def fib():
+    a = 0
+    b = 1
+    n = 1
+    while n <= 10:
+        print(a,end=" ")
+        a,b = b,a+b
+        n += 1
+        
+fib()
+0 1 1 2 3 5 8 13 21 34 
+# Q7. Write a List Comprehension to iterate through the given string: ‘pwskills’.
+
+# Expected output: ['p', 'w', 's', 'k', 'i', 'l', 'l', 's'] 
+s = "pwskills"
+lst = [char for char in s]
+print(lst)
+['p', 'w', 's', 'k', 'i', 'l', 'l', 's']
+# Q8. Write a python program to check whether a given number is Palindrome or not using a while loop
+def isPallindrome(num):
+    return str(num) == str(num)[::-1]
+
+num = int(input("Enter a number: "))
+ans = isPallindrome(num)
+print(ans)
+True
+isPallindrome(25)
+False
+# Q9. Write a code to print odd numbers from 1 to 100 using list comprehension.
+
+# Note: Use a list comprehension to create a list from 1 to 100 and use another List comprehension to filter
+# out odd numbers.
+lst = [ele  for ele in range(1,101)]
+lst_odd = [ele for ele in lst if ele&1]
+print(lst_odd)
+[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99]
+ 
